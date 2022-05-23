@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Product} from "../product.model"
+import { ApiIntegrationService } from "../api-integration.service";
 
 @Component({
   selector: "app-products-page",
@@ -9,7 +10,13 @@ import {Product} from "../product.model"
 export class ProductsPageComponent implements OnInit {
   products: Product[] = []
   error = false
+
+  constructor(private api: ApiIntegrationService) {
+
+  }
   ngOnInit() {
-    // Get products here
+    this.api.getProducts().subscribe(response =>  {
+      this.products = response.products
+    })
   }
 }
