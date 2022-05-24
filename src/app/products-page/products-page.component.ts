@@ -10,9 +10,9 @@ import { ApiIntegrationService } from "../api-integration.service";
 export class ProductsPageComponent implements OnInit {
   products: Product[] = []
   error = false
+  id!: string | null
 
   constructor(private api: ApiIntegrationService) {
-
   }
   ngOnInit() {
     this.api.getProducts().subscribe(response =>  {
